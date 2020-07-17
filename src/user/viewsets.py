@@ -10,4 +10,4 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     queryset = User.objects.all()
     # authentication_classes = ()
-    permission_classes = (IsAuthenticated, UpdateOwnDetail)
+    # permission_classes = (IsAuthenticated, UpdateOwnDetail)

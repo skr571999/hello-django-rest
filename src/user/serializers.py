@@ -15,7 +15,29 @@ class UserSerializer(serializers.ModelSerializer):
             email=validated_data["email"], name=validated_data["name"]
         )
 
-        print("Validated Data", validated_data)
+        user.set_password(validated_data["password"])
+        user.save()
+
+        return user
+
+
+class UserRegistrationSerializer(serializers.ModelSerializer):
+    mobile_no = serializers.IntegerField()
+
+    class Meta:
+        model = User
+        fields = ("id", "name", "email", "mobile_no", "password", "company")
+        extra_kwargs = {"password": {"write_only": True}}
+
+    def create(self, validated_data):
+        print(validated_data)
+        user = User(
+            email=validated_data["email"],
+            name=validated_data["name"],
+            mobile_no=validated_data["mobile_no"],
+            company=validated_data["company"],
+        )
+
         user.set_password(validated_data["password"])
         user.save()
 

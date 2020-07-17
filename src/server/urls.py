@@ -16,10 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-
 from rest_framework_simplejwt import views as jwt_views
 
+
 from user.urls import router as user_router
+from user.views import UserRegistrationAPIView
 
 
 class DefaultRouter(routers.DefaultRouter):
@@ -33,6 +34,7 @@ router.extend(user_router)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
+    path("api/register/", UserRegistrationAPIView.as_view()),
 
     path('api/token/',
          jwt_views.TokenObtainPairView.as_view(),
