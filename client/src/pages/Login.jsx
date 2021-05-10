@@ -1,0 +1,64 @@
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
+export default function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(email, password);
+  };
+
+  return (
+    <div className="row m-0 p-0 justify-content-center">
+      <div className="col-10 col-md-8 py-4 row justify-content-center bg-white mt-4 rounded">
+        <div className="col-12 text-center">
+          <h3>Login, here</h3>
+        </div>
+        <form
+          onSubmit={handleSubmit}
+          className="mt-4 col-12 col-md-10 col-lg-7"
+        >
+          <div className="form-group row align-items-center">
+            <label htmlFor="email" className="pl-0 col-4 m-0 font-weight-bold">
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              className="form-control col-8"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div className="form-group row align-items-center">
+            <label
+              htmlFor="password"
+              className="pl-0 col-4 m-0 font-weight-bold"
+            >
+              Password
+            </label>
+            <input
+              type="password"
+              id="password"
+              className="form-control col-8"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <div className="form-group row align-items-center justify-content-around mt-5">
+            <button className="btn btn-outline-success" type="submit">
+              Login
+            </button>
+          </div>
+        </form>
+        <div className="col-12 text-center">
+          <p>
+            Don't have a account, <Link to="/register">Register here</Link>{" "}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
