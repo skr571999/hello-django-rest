@@ -19,28 +19,14 @@ from rest_framework import routers
 from rest_framework_simplejwt import views as jwt_views
 
 
-from user.urls import router as user_router
-from user.views import UserRegistrationAPIView
-
-
 class DefaultRouter(routers.DefaultRouter):
     def extend(self, router):
         self.registry.extend(router.registry)
 
 
 router = DefaultRouter()
-router.extend(user_router)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('api/', include(router.urls)),
     path('api/', include('core.urls')),
-    # path("api/register/", UserRegistrationAPIView.as_view()),
-
-    # path('api/token/',
-    #      jwt_views.TokenObtainPairView.as_view(),
-    #      name='token_obtain_pair'),
-    # path('api/token/refresh/',
-    #      jwt_views.TokenRefreshView.as_view(),
-    #      name='token_refresh'),
 ]
